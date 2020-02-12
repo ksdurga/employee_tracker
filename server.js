@@ -43,7 +43,7 @@ app.get("/", function(req, res) {
 });
 
 app.post("/api/employees", function(req, res) {
-  connection.query("INSERT INTO employees SET ?", [req.body.first_name, req.body.last_name, req.body.role_id, req.body.manager_id], function(err, result) {
+  connection.query("INSERT INTO employees SET first_name = ?, last_name = ?, role_id = ?, manager_id = ?", [req.body.first_name, req.body.last_name, req.body.role_id, req.body.manager_id], function(err, result) {
     if (err) {
       return res.status(500).end();
     }

@@ -1,46 +1,46 @@
-<h1>Employee Tracker</h1>
+<div class="jumbotron">
+  <h1 class="display-4">Employee Management System</h1>
+  <p class="lead">An simple system to keep track of all of your employees</p>
+  <hr class="my-4">
+  {{!-- <a class="btn btn-primary btn-lg" role="button">Learn more</a> --}}
+</div>
 
-<ul>
+<h3>All Employees</h3>
+<ul class="list-group">
   {{#each employees}}
-  <li>
-    <p>
-      {{this.id}}. {{this.first_name}} {{this.last_name}} {{this.role_id}}  {{this.manager_id}}
-
-      <button data-employeeid="{{this.id}}" class="delemployee">Delete Employee</button>
-    </p>
-  </li>
+  <li class="list-group-item">Employee ID: {{this.id}} | First name: {{this.first_name}} | Last name: {{this.last_name}} <button data-employeeid="{{this.id}}" type="button" class="btn btn-primary delemployee">Delete Employee</button></li>
   {{/each}}
 </ul>
 
-<h2>Add an Employee</h2>
+<h4>Add an Employee</h4>
 <form id="createemployee" class="button-size">
   <textarea type="text" name="first_name" placeholder="First Name"></textarea>
   <textarea type="text" name="last_name" placeholder="Last Name"></textarea>
   <textarea type="text" name="role_id" placeholder="Role ID"></textarea>
   <textarea type="text" name="manager_id" placeholder="Manager ID"></textarea>
-  <button type="submit">Save Employee</button>
+  <button type="submit" class="btn btn-primary">Save Employee</button>
 </form>
 
-<h2>Update an Employee</h2>
+<h4>Update an Employee</h4>
 <form id="updateemployee" class="button-size">
   <select name="id">
 		{{#each employees}}
-      <option value="{{this.id}}">{{this.first_name}}, {{this.last_name}}, {{role_id}}, {{manager_id}}</option>
+      <option value="{{this.id}}">{{this.first_name}}, {{this.last_name}}</option>
 		{{/each}}
 	</select>
   <textarea type="text" name="first_name" placeholder="Updated First Name"></textarea>
   <textarea type="text" name="last_name" placeholder="Updated Last Name"></textarea>
   <textarea type="text" name="role_id" placeholder="Updated Role ID"></textarea>
   <textarea type="text" name="manager_id" placeholder="Updated Manager ID"></textarea>
-  <button type="submit">Update Employee</button>
+  <button type="submit" class="btn btn-primary">Update Employee</button>
 </form>
 
 <script type="text/javascript">
   $(".delemployee").on("click", function(event) {
+    console.log(this)
     // Get the ID from the button.
     // This is shorthand for $(this).attr("data-employeeid")
     var id = $(this).data("employeeid");
-
     // Send the DELETE request.
     $.ajax("/api/employees/" + id, {
       type: "DELETE"
@@ -103,4 +103,5 @@
       }
     );
   });
+
 </script>

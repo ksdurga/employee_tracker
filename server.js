@@ -55,7 +55,7 @@ app.post("/api/employees", function(req, res) {
   });
 });
 
-// Update a movie
+
 app.put("/api/employees/:id", function(req, res) {
   connection.query("UPDATE employees SET first_name = ?, last_name = ?, role_id = ?, manager_id = ? WHERE id = ?", [req.body.first_name, req.body.last_name, req.body.role_id, req.body.manager_id, req.params.id], function(err, result) {
     if (err) {
@@ -71,7 +71,7 @@ app.put("/api/employees/:id", function(req, res) {
   });
 });
 
-// Delete a movie
+
 app.delete("/api/employees/:id", function(req, res) {
   connection.query("DELETE FROM employees WHERE id = ?", [req.params.id], function(err, result) {
     if (err) {
